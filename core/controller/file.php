@@ -275,6 +275,7 @@ class file
 		{
 			// The image is currently being uploaded
 			// trigger_error('NOT_AUTHORISED');
+			header("Cache-Control: no-cache");
 			$this->error = 'not_authorised.jpg';
 			$this->data['image_filename'] = 'not_authorised.jpg';
 			$this->data['image_name'] = 'You are not authorized!';
@@ -289,6 +290,7 @@ class file
 		{
 			// Missing permissions
 			// trigger_error('NOT_AUTHORISED');
+			header("Cache-Control: no-cache");
 			$this->error = 'not_authorised.jpg';
 			$this->data['image_filename'] = 'not_authorised.jpg';
 			$this->data['image_name'] = 'You are not authorized!';
