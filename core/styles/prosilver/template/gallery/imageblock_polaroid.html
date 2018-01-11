@@ -4,6 +4,11 @@
 <!-- IF imageblock.ERROR --><h2>{imageblock.ERROR}</h2>
 
 <!-- ELSE -->
+<!-- IF U_IDX -->
+<div class="polaroid_limiter_idx">
+<!-- ELSE -->
+<div class="polaroid_limiter_glr">
+<!-- ENDIF -->
 <!-- BEGIN image -->
 <div class="polaroid">
 	<!-- IF not U_IDX -->
@@ -40,5 +45,6 @@
 	<span class="clear"></span>
 <!-- ENDIF -->
 <!-- END image -->
+</div>
 <!-- ENDIF -->
 <!-- END imageblock -->
