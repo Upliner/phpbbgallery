@@ -30,7 +30,7 @@ class url
 	/**
 	* Path from the phpbb root, into gallery's root
 	*/
-	private $phpbb_gallery_path = 'gallery/';
+	private $phpbb_gallery_path = 'app.php/gallery/';
 
 	const IMAGE_PATH = 'images/';
 	const UPLOAD_PATH = 'core/source/';
