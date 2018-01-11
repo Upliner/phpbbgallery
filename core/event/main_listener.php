@@ -21,6 +21,7 @@ class main_listener implements EventSubscriberInterface
 			'core.user_setup'						=> 'load_language_on_setup',
 			'core.page_header'						=> 'add_page_header_link',
 			'core.memberlist_view_profile'	       => 'user_profile_galleries',
+			'core.index_modify_page_title'	       => 'index_images',
 			//'core.generate_profile_fields_template_data_before'	       => 'profile_fileds',
 			'core.grab_profile_fields_data'	       => 'get_user_ids',
 			//'core.viewonline_overwrite_location'	=> 'add_newspage_viewonline',
@@ -171,6 +172,30 @@ class main_listener implements EventSubscriberInterface
 				}
 				$this->db->sql_freeresult($result);
 			}
+		}
+	}
+	public function index_images($event)
+	{
+		$show_parts = $this->gallery_config->get('rrc_profile_mode');
+		if ($show_parts >= 2)
+		{
+			$random = true;
+			$show_parts = $show_parts - 2;
+		}
+		if ($show_parts == 1)
+		{
+			$recent = true;
+		}
+		$this->template->assign_vars(array(
+				'U_IDX'	=> true,
+			));
+		if ($recent)
+		{
+			$this->gallery_search->recent($this->gallery_config->get('pegas_index_rct_count'), -1);
+		}
+		if ($random)
+		{
+			$this->gallery_search->random($this->gallery_config->get('pegas_index_rnd_count'));
 		}
 	}
 }

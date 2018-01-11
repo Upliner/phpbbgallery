@@ -1,18 +1,21 @@
 <!-- BEGIN imageblock -->
 <span class="clear"></span>
-<!-- IF imageblock.U_BLOCK --><h2><a href="{imageblock.U_BLOCK}">{imageblock.BLOCK_NAME}</a></h2><!-- ENDIF -->
+<!-- IF imageblock.U_BLOCK --><h3><a href="{imageblock.U_BLOCK}">{imageblock.BLOCK_NAME}</a></h3><!-- ENDIF -->
 <!-- IF imageblock.ERROR --><h2>{imageblock.ERROR}</h2>
 
 <!-- ELSE -->
 <!-- BEGIN image -->
 <div class="polaroid">
+	<!-- IF not U_IDX -->
 	<p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: bold; font-size: 1.2em;">
 		<!-- IF imageblock.image.U_IMAGE --><a href="{imageblock.image.U_IMAGE}"><!-- ENDIF -->{imageblock.image.UC_IMAGE_NAME}<!-- IF imageblock.image.U_IMAGE --></a><!-- ENDIF -->
 	</p>
 	<hr />
+	<!-- ENDIF -->
 	<div id="thumbnail">
 	<!-- IF imageblock.image.UC_THUMBNAIL_ACTION --><a href="{imageblock.image.UC_THUMBNAIL_ACTION}"><!-- ENDIF --><img src="{imageblock.image.UC_THUMBNAIL}" alt="{imageblock.image.UC_IMAGE_NAME}" title="{imageblock.image.UC_IMAGE_NAME}" /><!-- IF imageblock.image.UC_THUMBNAIL_ACTION --></a><!-- ENDIF -->
 	</div>
+	<!-- IF not U_IDX -->
 	<hr />
 	<!-- IF imageblock.image.U_ALBUM -->{L_ALBUM_NAME}{L_COLON} <a href="{imageblock.image.U_ALBUM}" style="font-weight: bold;" title="{imageblock.image.ALBUM_NAME}">{imageblock.image.ALBUM_NAME}</a><br /><!-- ENDIF -->
 	<!-- IF imageblock.image.POSTER -->{L_UPLOADED_BY_USER}{L_COLON} {imageblock.image.POSTER}<br /><!-- ENDIF -->
@@ -30,6 +33,7 @@
 				</p>
 			</form>
 		<!-- ENDIF -->
+	<!-- ENDIF -->
 </div>
 
 <!-- IF imageblock.image.S_LAST_ROW -->

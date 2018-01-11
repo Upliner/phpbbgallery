@@ -250,6 +250,7 @@ class file
 			{
 				// Image or album does not exist
 				// trigger_error('INVALID_IMAGE');
+				header("Cache-Control: no-cache")
 				$this->error = 'not_authorised.jpg';
 				$this->data['image_filename'] = 'not_authorised.jpg';
 				$this->data['image_name'] = 'You are not authorized!';

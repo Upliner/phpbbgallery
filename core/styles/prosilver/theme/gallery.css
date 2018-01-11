@@ -108,7 +108,7 @@ input.autowidth-gallery {
 
 .polaroid
 {
-	width: 242px;
+	min-width: 16%;
 	background: #FFFFFF;
 	display: block;
 	float: left;
