@@ -193,6 +193,9 @@ class index
 			{
 				$recent_images = true;
 			}
+			$this->template->assign_vars(array(
+				'U_GIDX'	=> true,
+			));
 			// Now before build random and recent ... let's check if we have images that can build it
 			if ($recent_images)
 			{
