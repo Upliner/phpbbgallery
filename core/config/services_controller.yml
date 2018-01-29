@@ -98,6 +98,8 @@ services:
             - '%tables.phpbbgallery.albums%'
             - '%tables.phpbbgallery.images%'
             - '%tables.phpbbgallery.users%'
+            - '%tables.phpbbgallery.tags%'
+            - '%tables.phpbbgallery.image_tags%'
             - '%tables.phpbbgallery.comments%'
             - '%core.root_path%'
             - '%core.php_ext%'

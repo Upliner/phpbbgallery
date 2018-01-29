@@ -7,6 +7,8 @@ parameters:
     tables.phpbbgallery.albums: %core.table_prefix%gallery_albums
     tables.phpbbgallery.contests: %core.table_prefix%gallery_contests
     tables.phpbbgallery.images: %core.table_prefix%gallery_images
+    tables.phpbbgallery.tags: %core.table_prefix%gallery_tags
+    tables.phpbbgallery.image_tags: %core.table_prefix%gallery_image_tags
     tables.phpbbgallery.moderators: %core.table_prefix%gallery_modscache
     tables.phpbbgallery.permissions: %core.table_prefix%gallery_permissions
     tables.phpbbgallery.roles: %core.table_prefix%gallery_roles

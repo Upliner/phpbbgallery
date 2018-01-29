@@ -178,7 +178,7 @@ class image
 		\phpbbgallery\core\notification\helper $notification_helper, \phpbbgallery\core\log $gallery_log,
 		\phpbbgallery\core\moderate $moderate, \phpbbgallery\core\rating $gallery_rating,
 		\phpbbgallery\core\block $block, ContainerInterface $phpbb_container,
-		$albums_table, $images_table, $users_table, $table_comments, $phpbb_root_path, $php_ext)
+		$albums_table, $images_table, $users_table, $tags_table, $image_tags_table, $table_comments, $phpbb_root_path, $php_ext)
 	{
 		$this->request = $request;
 		$this->auth = $auth;
@@ -212,6 +212,8 @@ class image
 		$this->table_albums = $albums_table;
 		$this->table_images = $images_table;
 		$this->table_users = $users_table;
+		$this->table_tags = $tags_table;
+		$this->table_image_tags = $image_tags_table;
 		$this->table_comments = $table_comments;
 		$this->phpbb_root_path = $phpbb_root_path;
 		$this->php_ext = $php_ext;
@@ -344,7 +346,7 @@ class image
 		$sql_sort_order = $sort_by_sql[$sort_key] . ' ' . (($sort_dir == 'd') ? 'DESC' : 'ASC');
 		$sql_sort_order .= $sql_help_sort;
 
-		// Let's see if there is prieveus image
+		// Let's see if there is previous image
 		$sql = 'SELECT *
 			FROM ' . $this->table_images . '
 			WHERE image_album_id = ' . (int) $album_id . "
@@ -444,7 +446,7 @@ class image
 
 		$this->users_id_array[$this->data['image_user_id']] = $this->data['image_user_id'];
 
-        $this->load_users_data();
+		$this->load_users_data();
 
 		$this->users_data_array[$this->data['image_user_id']]['username'] = ($this->data['image_username']) ? $this->data['image_username'] : $this->language->lang('GUEST');
 		$this->template->assign_vars(array(
@@ -497,6 +499,25 @@ class image
 				'S_RATE_ACTION'		=> $this->helper->route('phpbbgallery_core_image_rate', array('image_id'	=> $image_id)),
 			));
 			unset($rating);
+		}
+
+		// Add tags
+		$allow_tags = true;
+		if ($allow_tags) {
+			$sql = 'SELECT i.tag_id, t.tag_name
+				FROM ' . $this->table_image_tags . ' i
+				LEFT JOIN ' . $this->table_tags . ' t ON i.tag_id = t.tag_id
+				WHERE i.image_id = ' . (int) $image_id;
+			$result = $this->db->sql_query($sql);
+			$tags = "";
+			while ($row = $this->db->sql_fetchrow($result))
+			{
+				$tags .= '<a href="'.$this->helper->route('phpbbgallery_core_search', array('tag_id' => $row['tag_id'])).'">'.$row['tag_name'].'</a> ';
+			}
+			$this->db->sql_freeresult($result);
+			$this->template->assign_vars(array(
+				'IMAGE_TAGS'=> $tags,
+			));
 		}
 		/**
 		* Posting comment
